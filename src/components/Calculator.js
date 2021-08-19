@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events,no-unused-expressions,
+jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 import { React, useState, useEffect } from 'react';
 import NumberFormat from 'react-number-format';
 
@@ -15,9 +17,7 @@ function Calculator() {
       setPreState('');
     }
 
-    curState
-      ? setCurState((pre) => pre + e.target.innerText)
-      : setCurState(e.target.innerText);
+    curState ? setCurState((pre) => pre + e.target.innerText) : setCurState(e.target.innerText);
     setTotal(false);
   };
 
@@ -28,17 +28,6 @@ function Calculator() {
   useEffect(() => {
     setInput('0');
   }, []);
-  const operatorType = (e) => {
-    setTotal(false);
-    setOperator(e.target.innerText);
-    if (curState === '') return;
-    if (preState !== '') {
-      equals();
-    } else {
-      setPreState(curState);
-      setCurState('');
-    }
-  };
 
   const equals = (e) => {
     if (e?.target.innerText === '=') {
@@ -67,11 +56,23 @@ function Calculator() {
     setCurState('');
   };
 
+  const operatorType = (e) => {
+    setTotal(false);
+    setOperator(e.target.innerText);
+    if (curState === '') return;
+    if (preState !== '') {
+      equals();
+    } else {
+      setPreState(curState);
+      setCurState('');
+    }
+  };
+
   const minusPlus = () => {
     if (curState.charAt(0) === '-') {
       setCurState(curState.substring(1));
     } else {
-      setCurState('-' + curState);
+      setCurState(`-${curState}`);
     }
   };
 
@@ -88,78 +89,80 @@ function Calculator() {
   };
 
   return (
-    <div className='container'>
-      <div className='wrapper'>
+    <div className="container">
+      <div className="wrapper">
         <div className="screen">
           {input !== '' || input === '0' ? (
             <NumberFormat
               value={input}
-              displayType={'text'}
-              thousandSeparator={true}
+              displayType="text"
+              thousandSeparator
             />
           ) : (
             <NumberFormat
               value={preState}
-              displayType={'text'}
-              thousandSeparator={true}
+              displayType="text"
+              thousandSeparator
             />
           )}
         </div>
-        <div className='btn light-gray' onClick={reset}>
+        <div className="btn light-gray" onClick={reset}>
+          {' '}
           AC
         </div>
-        <div className='btn light-gray' onClick={percent}>
+        <div className="btn light-gray" onClick={percent}>
+          {' '}
           %
         </div>
-        <div className='btn light-gray' onClick={minusPlus}>
+        <div className="btn light-gray" onClick={minusPlus}>
           +/-
         </div>
-        <div className='btn orange' onClick={operatorType}>
+        <div className="btn orange" onClick={operatorType}>
           /
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           7
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           8
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           9
         </div>
-        <div className='btn orange' onClick={operatorType}>
+        <div className="btn orange" onClick={operatorType}>
           X
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           4
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           5
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           6
         </div>
-        <div className='btn orange' onClick={operatorType}>
+        <div className="btn orange" onClick={operatorType}>
           +
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           1
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           2
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           3
         </div>
-        <div className='btn orange' onClick={operatorType}>
+        <div className="btn orange" onClick={operatorType}>
           -
         </div>
-        <div className='btn zero' onClick={inputNum}>
+        <div className="btn zero" onClick={inputNum}>
           0
         </div>
-        <div className='btn' onClick={inputNum}>
+        <div className="btn" onClick={inputNum}>
           .
         </div>
-        <div className='btn' onClick={equals}>
+        <div className="btn" onClick={equals}>
           =
         </div>
       </div>
