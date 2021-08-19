@@ -26,7 +26,7 @@ export default class Calc extends Component {
     
         if (total) {
           setPreState('');
-          this.setState
+          this.setState({})
         }
     
         curState ? setCurState((pre) => pre + e.target.innerText) : setCurState(e.target.innerText);
