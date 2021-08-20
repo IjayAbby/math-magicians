@@ -1,173 +1,41 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events,no-unused-expressions,
-jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
-import { React, useState, useEffect } from 'react';
-import NumberFormat from 'react-number-format';
+import React from 'react';
 
-function Calculator() {
-  const [preState, setPreState] = useState('');
-  const [curState, setCurState] = useState('');
-  const [input, setInput] = useState('0');
-  const [operator, setOperator] = useState(null);
-  const [total, setTotal] = useState(false);
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-  const inputNum = (e) => {
-    if (curState.includes('.') && e.target.innerText === '.') return;
+  render() {
+    return (
+      <div className="calculator grid-container">
+        <div className="display grid-item">0</div>
+        <button className="button grid-item" type="button">AC</button>
+        <button className="button grid-item" type="button">+/-</button>
+        <button className="button grid-item" type="button">%</button>
+        <button className="button grid-item orange" type="button">/</button>
 
-    if (total) {
-      setPreState('');
-    }
+        <button className="button grid-item" type="button">7</button>
+        <button className="button grid-item" type="button">8</button>
+        <button className="button grid-item" type="button">9</button>
+        <button className="button grid-item  orange" type="button">x</button>
 
-    curState ? setCurState((pre) => pre + e.target.innerText) : setCurState(e.target.innerText);
-    setTotal(false);
-  };
+        <button className="button grid-item" type="button">4</button>
+        <button className="button grid-item" type="button">5</button>
+        <button className="button grid-item" type="button">6</button>
+        <button className="button grid-item orange" type="button">-</button>
 
-  useEffect(() => {
-    setInput(curState);
-  }, [curState]);
+        <button className="button grid-item" type="button">1</button>
+        <button className="button grid-item" type="button">2</button>
+        <button className="button grid-item" type="button">3</button>
+        <button className="button grid-item orange" type="button">+</button>
 
-  useEffect(() => {
-    setInput('0');
-  }, []);
-
-  const equals = (e) => {
-    if (e?.target.innerText === '=') {
-      setTotal(true);
-    }
-    let cal;
-    switch (operator) {
-      case '/':
-        cal = String(parseFloat(preState) / parseFloat(curState));
-        break;
-
-      case '+':
-        cal = String(parseFloat(preState) + parseFloat(curState));
-        break;
-      case 'X':
-        cal = String(parseFloat(preState) * parseFloat(curState));
-        break;
-      case '-':
-        cal = String(parseFloat(preState) - parseFloat(curState));
-        break;
-      default:
-        return;
-    }
-    setInput('');
-    setPreState(cal);
-    setCurState('');
-  };
-
-  const operatorType = (e) => {
-    setTotal(false);
-    setOperator(e.target.innerText);
-    if (curState === '') return;
-    if (preState !== '') {
-      equals();
-    } else {
-      setPreState(curState);
-      setCurState('');
-    }
-  };
-
-  const minusPlus = () => {
-    if (curState.charAt(0) === '-') {
-      setCurState(curState.substring(1));
-    } else {
-      setCurState(`-${curState}`);
-    }
-  };
-
-  const percent = () => {
-    preState
-      ? setCurState(String((parseFloat(curState) / 100) * preState))
-      : setCurState(String(parseFloat(curState) / 100));
-  };
-
-  const reset = () => {
-    setPreState('');
-    setCurState('');
-    setInput('0');
-  };
-
-  return (
-    <div className="container">
-      <div className="wrapper">
-        <div className="screen">
-          {input !== '' || input === '0' ? (
-            <NumberFormat
-              value={input}
-              displayType="text"
-              thousandSeparator
-            />
-          ) : (
-            <NumberFormat
-              value={preState}
-              displayType="text"
-              thousandSeparator
-            />
-          )}
-        </div>
-        <div className="btn light-gray" onClick={reset}>
-          {' '}
-          AC
-        </div>
-        <div className="btn light-gray" onClick={percent}>
-          {' '}
-          %
-        </div>
-        <div className="btn light-gray" onClick={minusPlus}>
-          +/-
-        </div>
-        <div className="btn orange" onClick={operatorType}>
-          /
-        </div>
-        <div className="btn" onClick={inputNum}>
-          7
-        </div>
-        <div className="btn" onClick={inputNum}>
-          8
-        </div>
-        <div className="btn" onClick={inputNum}>
-          9
-        </div>
-        <div className="btn orange" onClick={operatorType}>
-          X
-        </div>
-        <div className="btn" onClick={inputNum}>
-          4
-        </div>
-        <div className="btn" onClick={inputNum}>
-          5
-        </div>
-        <div className="btn" onClick={inputNum}>
-          6
-        </div>
-        <div className="btn orange" onClick={operatorType}>
-          +
-        </div>
-        <div className="btn" onClick={inputNum}>
-          1
-        </div>
-        <div className="btn" onClick={inputNum}>
-          2
-        </div>
-        <div className="btn" onClick={inputNum}>
-          3
-        </div>
-        <div className="btn orange" onClick={operatorType}>
-          -
-        </div>
-        <div className="btn zero" onClick={inputNum}>
-          0
-        </div>
-        <div className="btn" onClick={inputNum}>
-          .
-        </div>
-        <div className="btn" onClick={equals}>
-          =
-        </div>
+        <button className="button grid-item zero" type="button">0</button>
+        <button className="button grid-item" type="button">.</button>
+        <button className="button grid-item orange" type="button">=</button>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Calculator;
