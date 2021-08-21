@@ -1,8 +1,12 @@
+.container {
+  background-color: #eee;
+  width: 400px;
+  margin: auto;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  width: 400px;
-  margin: auto;
 }
 
 .calculator button {
@@ -17,9 +21,13 @@
   font-size: 14px;
 }
 
+.grid-item:hover {
+  border: 1px solid #eee;
+}
+
 .display {
-  grid-column: 1 / 5;
   text-align: right;
+  padding: 20px 35px;
 }
 
 .zero {
