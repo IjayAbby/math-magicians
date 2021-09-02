@@ -20,6 +20,11 @@ and their navigation using React Router. The final objective was to write and ru
 - Babel
 - Linters
 
+## Live Demo
+[Netlify deploy.](https://optimistic-williams-6278f8.netlify.app/)
+
+
+
 ## Setup
 
 - Clone the project `git clone git@github.com:IjayAbby/math-magicians.git` on a Terminal
