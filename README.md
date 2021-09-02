@@ -23,7 +23,7 @@ and their navigation using React Router. The final objective was to write and ru
 ## Live Demo
 [Netlify deploy.](https://optimistic-williams-6278f8.netlify.app/)
 
-
+[Heroku deploy.](https://math-magicians-react-web.herokuapp.com)
 
 ## Setup
 
